@@ -16,6 +16,7 @@ import {
   StarIcon,
   DocumentTextIcon,
   Cog6ToothIcon,
+  NewspaperIcon,
 } from "@heroicons/react/24/outline";
 import { useShowSidebar } from "@/store/useShowSidebar";
 import { signOut, useSession } from "next-auth/react";
@@ -38,6 +39,12 @@ const SIDEBAR_ROUTES = [
     path: "/dashboard/sheet",
     label: "OSS Sheet",
     icon: <DocumentTextIcon className="size-5" />,
+  },
+  {
+    path: "/dashboard/newsletter",
+    label: "NewsLetter",
+    icon: <NewspaperIcon className="size-5" />,
+    isProFeature: true,
   },
 ];
 
@@ -67,11 +74,9 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`h-screen ${
-        isCollapsed ? "w-20" : "w-72"
-      } flex flex-col bg-ox-sidebar border-r border-ox-header z-50 transition-all duration-300 ease-out ${
-        showSidebar ? "fixed xl:relative left-0 top-0 bottom-0" : ""
-      }`}
+      className={`h-screen ${isCollapsed ? "w-20" : "w-72"
+        } flex flex-col bg-ox-sidebar border-r border-ox-header z-50 transition-all duration-300 ease-out ${showSidebar ? "fixed xl:relative left-0 top-0 bottom-0" : ""
+        }`}
     >
       {/* Mobile header */}
       <div className="flex justify-between px-4 py-4 border-b border-ox-header xl:hidden bg-ox-sidebar">
@@ -114,13 +119,15 @@ export default function Sidebar() {
         {SIDEBAR_ROUTES.map((route) => {
           const activeClass = getSidebarLinkClassName(pathname, route.path);
           return (
-            <Link href={route.path} className={activeClass} key={route.path}>
-              <SidebarItem
-                itemName={route.label}
-                icon={route.icon}
-                collapsed={isCollapsed}
-              />
-            </Link>
+            <React.Fragment key={route.path}>
+              <Link href={route.path} className={activeClass}>
+                <SidebarItem
+                  itemName={route.label}
+                  icon={route.icon}
+                  collapsed={isCollapsed}
+                />
+              </Link>
+            </React.Fragment>
           );
         })}
         <SidebarItem
@@ -149,8 +156,8 @@ export default function Sidebar() {
             itemName="Opensox Pro"
             onclick={proClickHandler}
             icon={<StarIcon className="size-5" />}
-          collapsed={isCollapsed}
-        />
+            collapsed={isCollapsed}
+          />
         )}
       </div>
 
@@ -189,9 +196,8 @@ function ProfileMenu({ isCollapsed }: { isCollapsed: boolean }) {
   return (
     <div className="px-3 py-4 border-t border-ox-header bg-ox-sidebar relative profile-menu-container">
       <div
-        className={`group flex items-center rounded-md bg-ox-content border border-ox-header p-2 transition-all duration-300 ease-out cursor-pointer ${
-          isCollapsed ? "justify-center" : "gap-3"
-        }`}
+        className={`group flex items-center rounded-md bg-ox-content border border-ox-header p-2 transition-all duration-300 ease-out cursor-pointer ${isCollapsed ? "justify-center" : "gap-3"
+          }`}
         onClick={() => setOpen((s) => !s)}
       >
         <ProfilePic imageUrl={userImage} />
