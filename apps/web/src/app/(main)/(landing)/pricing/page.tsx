@@ -370,12 +370,6 @@ const SecondaryPricingCard = () => {
             </div>
 
             <div className="w-full border-dashed border-border-primary px-6 lg:px-10  py-4">
-<<<<<<< HEAD
-              <h2 className="text-6xl lg:text-[90px] lg:leading-[82px] tracking-tight font-semibold">
-                $49 <span className="text-4xl">/ year</span>
-              </h2>
-              <p className="text-lg text-white-400 mt-2">(~ ₹4,351 INR)</p>
-=======
               <div className="flex items-center gap-4 flex-wrap">
                 <h2 className="text-6xl lg:text-[90px] lg:leading-[82px] tracking-tight font-semibold">
                   $49{" "}
@@ -391,7 +385,6 @@ const SecondaryPricingCard = () => {
                   Discounted till 30 November
                 </span>
               </div>
->>>>>>> upstream/main
             </div>
             <div className="w-full border-dashed border-border-primary px-6 lg:px-10 py-4 ">
               <PaymentFlow
